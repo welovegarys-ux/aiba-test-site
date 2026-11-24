@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>BrightSmile Dental Group — AIBA test site (fictional)</title>
+<style>
+  :root { --ink:#1d2a33; --muted:#5b6b75; --line:#d9e2e7; --brand:#0f766e; --brand-ink:#fff; --bg:#f5f8f9; --warn:#fff4d6; --warn-line:#e7c76a; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); background:var(--bg); }
+  .banner { background:var(--warn); border-bottom:1px solid var(--warn-line); padding:10px 16px; font-size:14px; text-align:center; }
+  header, main, footer { max-width:880px; margin:0 auto; padding:0 20px; }
+  header { padding-top:28px; }
+  h1 { font-size:28px; margin:0 0 4px; letter-spacing:-.01em; }
+  .tag { color:var(--muted); margin:0 0 24px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:760px){ .grid { grid-template-columns:1fr; } }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px; }
+  .card h2 { font-size:18px; margin:0 0 10px; }
+  ul.facts { padding-left:18px; margin:0; } ul.facts li { margin:4px 0; }
+  #log { height:300px; overflow-y:auto; border:1px solid var(--line); border-radius:8px; padding:10px; background:#fbfdfd; margin-bottom:12px; }
+  .msg { max-width:88%; padding:8px 12px; border-radius:12px; margin:6px 0; white-space:pre-wrap; word-wrap:break-word; }
+  .me { margin-left:auto; background:var(--brand); color:var(--brand-ink); border-bottom-right-radius:4px; }
+  .bot { background:#eef3f5; border-bottom-left-radius:4px; }
+  .sys { color:var(--muted); font-size:13px; text-align:center; }
+  label { display:block; font-size:14px; margin:8px 0 4px; }
+  input[type=text], input[type=email], textarea { width:100%; padding:9px 10px; border:1px solid var(--line); border-radius:8px; font:inherit; }
+  textarea { resize:vertical; min-height:70px; }
+  .row { display:flex; gap:10px; } .row > div { flex:1; }
+  .consent { display:flex; gap:8px; align-items:flex-start; font-size:13px; color:var(--muted); margin:10px 0; }
+  .consent input { margin-top:3px; }
+  button { background:var(--brand); color:var(--brand-ink); border:0; border-radius:8px; padding:10px 18px; font:inherit; font-weight:600; cursor:pointer; }
+  button:disabled { opacity:.55; cursor:wait; }
+  .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .count { font-size:12px; color:var(--muted); text-align:right; }
+  footer { color:var(--muted); font-size:13px; padding:28px 20px 40px; }
+  footer h3 { font-size:14px; color:var(--ink); margin:18px 0 6px; }
+</style>
+</head>
+<body>
+<div class="banner"><strong>Test site.</strong> BrightSmile Dental Group is a fictional business used to test AIBA. Do not enter real health or personal details. The chat is only switched on during scheduled tests.</div>
+<header>
+  <h1>BrightSmile Dental Group</h1>
+  <p class="tag">Fictional practice · AIBA website-chat test page</p>
+</header>
+<main class="grid">
+  <section class="card">
+    <h2>Ask us a question</h2>
+    <div id="log" aria-live="polite"><div class="sys">Questions about opening hours and our services can be answered here. Anything else is passed to the team, who reply by email.</div></div>
+    <form id="chat" novalidate>
+      <div class="row">
+        <div><label for="name">Name</label><input id="name" name="name" type="text" maxlength="80" autocomplete="name" required></div>
+        <div><label for="email">Email</label><input id="email" name="email" type="email" maxlength="200" autocomplete="email" required></div>
+      </div>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" maxlength="1000" required></textarea>
+      <div class="count"><span id="chars">0</span>/1000</div>
+      <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+      <div class="consent"><input id="consent" name="consent" type="checkbox" value="true">
+        <label for="consent" style="margin:0">I agree that my name, email and message are processed to answer me, as described in the privacy notice below.</label></div>
+      <button id="send" type="submit">Send</button>
+    </form>
+  </section>
+  <section class="card">
+    <h2>About this page</h2>
+    <p>This page tests AIBA's website chat. Your message goes to an automation (Make.com), which checks it against approved business facts and the AIBA policy rules before anything is shown back.</p>
+    <ul class="facts">
+      <li>Only approved facts (such as opening hours) are answered automatically.</li>
+      <li>Prices, bookings, complaints, urgent or clinical questions and anything unclear are passed to the team instead.</li>
+      <li>Nothing is booked, quoted or charged from this chat.</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  <h3>Privacy notice (test)</h3>
+  <p>Who: the AIBA project team, testing with a fictional business. What: the name, email and message you send, and a random chat session code kept in this browser tab. Why: to answer your message and to test the service. Where: Make.com (EU), Supabase (database) and the AI model used by Make; a contact record may be created in the test CRM. How long: test data is deleted when testing ends. Your choices: do not send real health or personal information; to ask for your data to be deleted, say so in the chat.</p>
+  <p>This is not a real dental practice and cannot give dental advice. In an emergency call 999, or 111 for urgent advice.</p>
+</footer>
+<script>
+(() => {
+  const ENDPOINT = 'https://hook.eu1.make.com/tvau9oaacegy76twy3jps7jw9gnv7kv9';
+  const id = () => (crypto.randomUUID ? crypto.randomUUID() : Array.from(crypto.getRandomValues(new Uint8Array(16)), b => b.toString(16).padStart(2, '0')).join(''));
+  let session;
+  try { session = sessionStorage.getItem('aiba_chat_session'); if (!session) { session = id(); sessionStorage.setItem('aiba_chat_session', session); } }
+  catch (e) { session = id(); }
+  const $ = s => document.querySelector(s);
+  const log = $('#log'), form = $('#chat'), send = $('#send'), msg = $('#message');
+  const add = (text, cls) => { const d = document.createElement('div'); d.className = 'msg ' + cls; d.textContent = text; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; };
+  msg.addEventListener('input', () => { $('#chars').textContent = msg.value.length; });
+  form.addEventListener('submit', async ev => {
+    ev.preventDefault();
+    const name = $('#name').value.trim(), email = $('#email').value.trim(), text = msg.value.trim();
+    if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { add('Please enter your name and a valid email address so the team can reply.', 'sys'); return; }
+    if (!text) return;
+    if (!$('#consent').checked) { add('Please tick the box to agree to how we handle your message.', 'sys'); return; }
+    add(text, 'me'); msg.value = ''; $('#chars').textContent = '0';
+    const wait = add('…', 'bot'); send.disabled = true;
+    const body = new URLSearchParams({ name, email, message: text, consent: 'true', website: $('#website').value, session, msg: id() });
+    const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), 120000);
+    try {
+      const res = await fetch(ENDPOINT, { method: 'POST', body, signal: ctrl.signal });
+      const reply = (await res.text()).trim();
+      wait.textContent = (!res.ok || !reply || reply === 'Accepted')
+        ? 'The chat is offline at the moment (this test page is only switched on during tests). Please try again later.'
+        : reply;
+    } catch (e) {
+      wait.textContent = 'The chat is offline at the moment (this test page is only switched on during tests). Please try again later.';
+    } finally { clearTimeout(timer); send.disabled = false; }
+  });
+})();
+</script>
+</body>
+</html>
